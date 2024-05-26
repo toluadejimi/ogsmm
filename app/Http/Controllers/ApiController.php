@@ -251,4 +251,39 @@ class ApiController extends Controller
             $result['status'] = strtoupper($order->refill_status);
         }
     }
+
+
+
+    public function e_fund(request $request)
+    {
+
+        $get_user = User::where('email', $request->email)->first() ?? null;
+
+        if ($get_user == null) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'No one user found, please check email and try again',
+            ]);
+        }
+
+
+        User::where('email', $request->email)->increment('balance', $request->amount) ?? null;
+
+
+        $amount = number_format($request->amount, 2);
+
+        Transaction::where('ref_id', $request->order_id)->update(['status' => 2]);
+
+
+        return response()->json([
+            'status' => true,
+            'message' => "NGN $amount has been successfully added to your wallet",
+        ]);
+
+
+    }
+
+
+
 }
