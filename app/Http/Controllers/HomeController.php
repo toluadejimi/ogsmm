@@ -126,7 +126,7 @@ class HomeController extends Controller
     }
 
 
-    
+
 
     public function addFund()
     {
@@ -147,13 +147,13 @@ class HomeController extends Controller
 
         if ($request->type == 1) {
 
-            if ($request->amount < 100) {
-                return back()->with('error', 'You can not fund less than NGN 100');
+            if ($request->amount < 1000) {
+                return back()->with('error', 'You can not fund less than NGN 1,000');
             }
 
 
-            if ($request->amount > 100000) {
-                return back()->with('error', 'You can not fund more than NGN 100,000');
+            if ($request->amount > 500000) {
+                return back()->with('error', 'You can not fund more than NGN 500,000');
             }
 
 
@@ -182,13 +182,13 @@ class HomeController extends Controller
 
         if ($request->type == 2) {
 
-            if ($request->amount < 100) {
-                return back()->with('error', 'You can not fund less than NGN 100');
+            if ($request->amount < 1000) {
+                return back()->with('error', 'You can not fund less than NGN 1,000');
             }
 
 
-            if ($request->amount > 100000) {
-                return back()->with('error', 'You can not fund more than NGN 100,000');
+            if ($request->amount > 500000) {
+                return back()->with('error', 'You can not fund more than NGN 500,000');
             }
 
 
@@ -207,8 +207,8 @@ class HomeController extends Controller
             $data->save();
 
 
-            $message = Auth::user()->email . "| wants to fund Manually |  NGN " . number_format($request->amount) . " | with ref | $ref |  on SOCIAL BOOST PLUG";
-            send_notification2($message);
+            //$message = Auth::user()->email . "| wants to fund Manually |  NGN " . number_format($request->amount) . " | with ref | $ref |  on SOCIAL BOOST PLUG";
+            //send_notification2($message);
 
 
 
